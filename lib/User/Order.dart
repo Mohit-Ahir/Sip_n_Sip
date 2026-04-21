@@ -28,15 +28,23 @@ class _OrderrState extends State<Orderr> {
     return Scaffold(
       backgroundColor: const Color(0xFFF5E6D3), // Premium cream background
 
-      // MODERN APP BAR
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
+
+       appBar: AppBar(
+        backgroundColor: Colors.brown,
         elevation: 0,
-        toolbarHeight: 70,
+        toolbarHeight: 80,
         centerTitle: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
+        ),
         title: const Text(
-          "My Orders", 
-          style: TextStyle(color: Colors.brown, fontWeight: FontWeight.w900, fontSize: 24, letterSpacing: 1.2)
+           "My Orders", 
+          style: TextStyle(
+            color: Colors.white, 
+            fontWeight: FontWeight.bold, 
+            fontSize: 22, 
+            letterSpacing: 1.2
+          ),
         ),
       ),
 
@@ -143,7 +151,7 @@ class _OrderrState extends State<Orderr> {
                         Divider(color: Colors.grey.shade200, thickness: 1.5),
                         const SizedBox(height: 10),
 
-                        // TOTAL ROW
+                       
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -159,7 +167,6 @@ class _OrderrState extends State<Orderr> {
             },
           ),
 
-      // ROUNDED FLOATING-STYLE BOTTOM NAV
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart'; // Ensure this is in pubspec.yaml
 import 'dart:convert';
 
 class ProductDetailsPage extends StatefulWidget {
@@ -16,7 +17,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   String selectedSize = 'Small';
   String selectedSugar = 'Normal Sugar';
   late int basePrice;
-  late int finalPrice; // This is the dynamic price we will show everywhere
+  late int finalPrice; 
 
   @override
   void initState() {
@@ -25,12 +26,38 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     finalPrice = basePrice; 
   }
 
-  Widget displayImage(String base64Str) {
+  // 1. FAST IMAGE DISPLAY (Hybrid Logic: Handles ImgBB URLs & old Base64)
+  Widget displayImage(String? imagePath) {
+    if (imagePath == null || imagePath.isEmpty) {
+      return const Icon(Icons.local_cafe, size: 80, color: Colors.brown);
+    }
+
     try {
-      if (base64Str.isEmpty) return Icon(Icons.local_cafe, size: 80, color: Colors.brown.shade300);
-      return Image.memory(base64Decode(base64Str), fit: BoxFit.cover, width: double.infinity, height: double.infinity, gaplessPlayback: true);
+      // Logic for new ImgBB URLs
+      if (imagePath.startsWith('http')) {
+        return CachedNetworkImage(
+          imageUrl: imagePath,
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+          placeholder: (context, url) => const Center(
+            child: CircularProgressIndicator(strokeWidth: 2, color: Colors.brown),
+          ),
+          errorWidget: (context, url, error) => const Icon(Icons.broken_image, size: 50, color: Colors.grey),
+        );
+      } 
+      // Fallback logic for old Base64 data
+      else {
+        return Image.memory(
+          base64Decode(imagePath), 
+          fit: BoxFit.cover, 
+          width: double.infinity, 
+          height: double.infinity,
+          gaplessPlayback: true
+        );
+      }
     } catch (e) {
-      return Icon(Icons.local_cafe, size: 80, color: Colors.brown.shade300);
+      return const Icon(Icons.broken_image, size: 50, color: Colors.grey);
     }
   }
 
@@ -52,7 +79,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         await cartRef.doc(cartItemId).set({
           'name': widget.productData['name'],
           'price': finalPrice,
-          'image': widget.productData['image'] ?? "",
+          'image': widget.productData['image'] ?? "", // Saves the ImgBB URL
           'size': selectedSize,
           'sugar': selectedSugar,
           'qty': 1,
@@ -70,7 +97,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   void updatePrice(String size) {
     setState(() {
       selectedSize = size;
-      // Logical price calculation
       if (size == 'Small') finalPrice = basePrice;
       if (size == 'Medium') finalPrice = basePrice + 30;
       if (size == 'Large') finalPrice = basePrice + 50;
@@ -95,7 +121,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               children: [
-                // Product Image
+                // PRODUCT IMAGE CARD
                 Container(
                   height: 280,
                   width: double.infinity,
@@ -106,12 +132,12 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30),
-                    child: displayImage(widget.productData['image'] ?? ""),
+                    child: displayImage(widget.productData['image']), // USES NEW LOGIC
                   ),
                 ),
                 const SizedBox(height: 30),
 
-                // Name and REFLACTED PRICE (Updated logic here)
+                // Name and REFLACTED PRICE
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +148,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900, color: Colors.brown.shade900, height: 1.2),
                       ),
                     ),
-                    // This Price now reflects the size selection instantly
                     Text(
                       "₹$finalPrice", 
                       style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w900, color: Colors.brown),
@@ -179,7 +204,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     );
                   }).toList(),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 40),
               ],
             ),
           ),
@@ -189,8 +214,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             padding: const EdgeInsets.all(25),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
-              boxShadow: [BoxShadow(color: Colors.brown.withOpacity(0.08), blurRadius: 20, offset: const Offset(0, -5))],
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(35)),
+              boxShadow: [BoxShadow(color: Colors.brown.withOpacity(0.1), blurRadius: 20, offset: const Offset(0, -5))],
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -206,7 +231,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 SizedBox(
                   height: 55, width: 180,
                   child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.brown, elevation: 0, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.brown, 
+                      elevation: 0, 
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))
+                    ),
                     onPressed: addToCart,
                     child: const Text("Add to Cart", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
                   ),
