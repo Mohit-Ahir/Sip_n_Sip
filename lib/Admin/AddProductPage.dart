@@ -18,7 +18,7 @@ class _AddProductPageState extends State<AddProductPage> {
   final _priceController = TextEditingController();
   final _quantityController = TextEditingController(); 
 
-  final String imgBBKey = "95170aa0021e9a2be058c52de30c72ea"; 
+  final String imgBBKey = "YOUR_IMGBB_KEY_HERE"; 
   String? _selectedCategory;
   bool _isPopular = false;
   String? uploadedImageUrl;
