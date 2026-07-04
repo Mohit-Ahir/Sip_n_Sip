@@ -41,49 +41,48 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAR9Zk4-1aEivy4Ih4noEDosThIRsJa_7Q',
-    appId: '1:446136742143:web:832998ce9be5845caf9cca',
-    messagingSenderId: '446136742143',
+    apiKey: 'AIza... (Your Web Key)',
+    appId: '1:XXXXXXXXXXXX:web:XXXXXXXXXXXX',
+    messagingSenderId: 'XXXXXXXXXXXX',
     projectId: 'sip-and-sip',
     authDomain: 'sip-and-sip.firebaseapp.com',
     storageBucket: 'sip-and-sip.firebasestorage.app',
-    measurementId: 'G-JQ3XR8GF4T',
+    measurementId: 'G-XXXXXXXXXX',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCtT-jIjXP-HB5nZmW6AGhzhbCvk2Mo4cU',
-    appId: '1:446136742143:android:a9df2897a6469ec5af9cca',
-    messagingSenderId: '446136742143',
+    apiKey: 'AIza... (Your Android Key)',
+    appId: '1:XXXXXXXXXXXX:android:XXXXXXXXXXXX',
+    messagingSenderId: 'XXXXXXXXXXXX',
     projectId: 'sip-and-sip',
     storageBucket: 'sip-and-sip.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD-i6czTJJP48dLG5g3-Uh2QXC1ALgKM8w',
-    appId: '1:446136742143:ios:9b841629adce0089af9cca',
-    messagingSenderId: '446136742143',
+    apiKey: 'AIza... (Your iOS Key)',
+    appId: '1:XXXXXXXXXXXX:ios:XXXXXXXXXXXX',
+    messagingSenderId: 'XXXXXXXXXXXX',
     projectId: 'sip-and-sip',
     storageBucket: 'sip-and-sip.firebasestorage.app',
     iosBundleId: 'com.example.sipAndSip',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD-i6czTJJP48dLG5g3-Uh2QXC1ALgKM8w',
-    appId: '1:446136742143:ios:9b841629adce0089af9cca',
-    messagingSenderId: '446136742143',
+    apiKey: 'AIza... (Your MacOS Key)',
+    appId: '1:XXXXXXXXXXXX:ios:XXXXXXXXXXXX',
+    messagingSenderId: 'XXXXXXXXXXXX',
     projectId: 'sip-and-sip',
     storageBucket: 'sip-and-sip.firebasestorage.app',
     iosBundleId: 'com.example.sipAndSip',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyAR9Zk4-1aEivy4Ih4noEDosThIRsJa_7Q',
-    appId: '1:446136742143:web:57191d4750ed9abbaf9cca',
-    messagingSenderId: '446136742143',
+    apiKey: 'AIza... (Your Windows Key)',
+    appId: '1:XXXXXXXXXXXX:web:XXXXXXXXXXXX',
+    messagingSenderId: 'XXXXXXXXXXXX',
     projectId: 'sip-and-sip',
     authDomain: 'sip-and-sip.firebaseapp.com',
     storageBucket: 'sip-and-sip.firebasestorage.app',
-    measurementId: 'G-EW14ZZ9K3P',
+    measurementId: 'G-XXXXXXXXXX',
   );
-
 }
