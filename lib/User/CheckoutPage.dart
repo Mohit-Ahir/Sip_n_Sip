@@ -66,7 +66,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
   void openRazorpay(double amount) {
     var options = {
-      'key': 'rzp_test_RvmuJoc5qzT1Pl', // MAKE SURE THIS IS YOUR TEST KEY
+      'key': 'YOUR_RAZORPAY_KEY_HER', // MAKE SURE THIS IS YOUR TEST KEY
       'amount': (amount + deliveryFee) * 100, // convert to paise
       'name': 'Sip & Sip Coffee',
       'description': 'Payment for Order',
