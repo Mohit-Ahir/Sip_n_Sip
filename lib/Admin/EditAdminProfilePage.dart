@@ -22,7 +22,7 @@ class _EditAdminProfilePageState extends State<EditAdminProfilePage> {
   final confirmPasswordController = TextEditingController();
 
   // PASTE YOUR IMGBB KEY HERE
-  final String imgBBKey = "95170aa0021e9a2be058c52de30c72ea"; 
+  final String imgBBKey = "YOUR_IMGBB_KEY_HERE"; 
   bool isUploading = false;
   bool loading = false;
   String? profileImageUrl;
