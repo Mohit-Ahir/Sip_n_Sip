@@ -156,15 +156,4 @@ Feel free to explore and improve the code!
 
 ---
 
-# 📤 How to Add This README to GitHub
-
-1. Open VS Code.
-2. Create/Open `README.md`.
-3. Paste the content above.
-4. Run these commands:
-
-```bash
-git add README.md
-git commit -m "Added comprehensive README for project setup"
-git push origin main
 ```
