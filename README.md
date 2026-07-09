@@ -1,16 +1,107 @@
-# sip_and_sip
+☕ Sip & Sip - Premium Coffee E-Commerce App
 
-A new Flutter project.
+Sip & Sip is a high-performance, full-stack mobile application built using
+Flutter and Firebase. It offers a premium experience for coffee lovers and a
+powerful management dashboard for café owners.
 
-## Getting Started
+⚠️ Security Notice
 
-This project is a starting point for a Flutter application.
+For security reasons, all Private API Keys and Firebase Configuration files have
+been removed from this public repository. To run this project on your local
+machine, you must follow the setup instructions below to add your own keys.
 
-A few resources to get you started if this is your first Flutter project:
+🚀 Key Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+👤 Customer Features
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  - Personalized UI: Dynamic time-based greetings and premium coffee-themed
+    design.
+  - Customization: Select Size and Sugar levels with real-time price updates.
+  - Smart Checkout: Free map integration for precise delivery address selection.
+  - Secure Payments: Integrated with Razorpay (Test Mode) and Cash on Delivery.
+  - Profile: Manage your account and upload profile photos via ImgBB.
+
+🛡️ Admin Features
+
+  - Live Analytics: Real-time tracking of Revenue, Orders, and Customers.
+  - Inventory CRUD: Add, Edit, and Delete coffee products with image cropping.
+  - Low Stock Alerts: Automatic notifications when product quantity falls
+    below 5.
+  - Order Management: Change order status (Preparing/Delivered) in real-time.
+
+🛠️ Setup Instructions
+
+1. Firebase Configuration
+
+You need to connect your own Firebase project:
+
+1.  Create a project at Firebase Console.
+2.  Add an Android app with your package name (e.g., com.example.sip_and_sip).
+3.  Download the google-services.json file and place it in:
+    android/app/google-services.json
+4.  Generate your lib/firebase_options.dart using the FlutterFire CLI or
+    manually fill in your project IDs.
+
+2. External API Keys
+
+You must provide your own keys in the following files:
+
+A. ImgBB (Image Hosting)
+
+Get a free key at api.imgbb.com. Paste it in:
+
+  - lib/Admin/AddProductPage.dart
+  - lib/Admin/EditProductPage.dart
+  - lib/User/EditProfile.dart
+  - lib/Admin/EditAdminProfilePage.dart
+
+B. Razorpay (Payments)
+
+Get a test key at dashboard.razorpay.com. Paste it in:
+
+  - lib/User/CheckoutPage.dart
+
+📦 Required Packages
+
+Run the following command to install all dependencies:
+
+flutter pub get
+
+Key Dependencies:
+
+  - firebase_auth & cloud_firestore
+  - google_sign_in
+  - razorpay_flutter
+  - flutter_map & geolocator
+  - image_picker & image_cropper
+  - cached_network_image
+  - http
+
+📱 Android Setup (Important)
+
+For the Image Cropper to work, ensure you have added this to your
+android/app/src/main/AndroidManifest.xml inside the <application> tag:
+
+<activity
+    android:name="com.yalantis.ucrop.UCropActivity"
+    android:screenOrientation="portrait"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+
+📝 License
+
+This project was developed for educational purposes at RK University. Feel free
+to explore and improve the code!
+
+How to add this to GitHub:
+
+1.  Open VS Code.
+2.  Create/Open README.md.
+3.  Paste the content above.
+4.  Run these commands:
+    git add README.md
+    git commit -m "Added comprehensive README for project setup"
+    git push origin main
+
+Now, anyone who visits your GitHub will see a perfectly organized and
+professional project!
